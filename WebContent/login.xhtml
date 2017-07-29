@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<title>Simple Blog | Login</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</f:facet>
+</h:head>
+<h:body>
+
+	<div class="login">
+		<h:form>
+		<p:panel header="Login">
+			<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+			<h:panelGrid columns="2" columnClasses="label, value">
+				<h:outputText value="E-mail: *" />
+				<p:inputText value="#{loginController.usuarioViewModel.email}" 
+							 required="true" 
+							 label="Firstname"
+							 requiredMessage="Insira o e-mail!" />
+				<h:outputText value="Senha: *" />
+				<p:password value="#{loginController.usuarioViewModel.senha}" 
+							required="true" 
+							label="Lastname"
+							requiredMessage="Insira a senha!" />
+				<p:commandButton id="button" action="#{loginController.entrar}" update="messages" value="Entrar" icon="fa fa-chevron-up" />
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+	</div>
+
+
+</h:body>
+
+</html>

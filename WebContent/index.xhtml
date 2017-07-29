@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<title>Simple Blog</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</f:facet>
+</h:head>
+<h:body>
+	<p:menubar>
+		
+		<p:menuitem icon="fa fa-home" value=" Home" url="#" />
+		<f:facet name="options">
+			<p:button outcome="login.xhtml" value="Fazer login"  />
+		</f:facet>
+	</p:menubar>
+
+	<p:separator />
+
+	<ui:repeat value="#{homeController.postsNaPagina}" var="post">
+		<p:panel id="basic" header="#{post.titulo}" style="margin-bottom:20px">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:graphicImage name="img/breve.jpg" width="200px" />
+				<h:outputText value="#{post.conteudo}" />
+			</h:panelGrid>
+			<p:button value=" + Detalhes" />
+		</p:panel>
+	</ui:repeat>
+
+	<p:separator />
+
+	<p:button value=" Anterior" icon="fa fa-angle-double-left">
+		<f:param name="pinicio" value="0" />
+	</p:button>
+	<p:button value=" Próxima" icon="fa fa-angle-double-right">
+		<f:param name="pfim" value="10" />
+	</p:button>
+
+</h:body>
+
+</html>
