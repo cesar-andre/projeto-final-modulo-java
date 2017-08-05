@@ -1,6 +1,7 @@
 package br.com.simpleblog.model;
 
-import java.util.Calendar;
+import java.io.ByteArrayInputStream;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.primefaces.model.DefaultStreamedContent;
 
 @Entity
 public class Post {
@@ -34,7 +37,7 @@ public class Post {
 	private String conteudo;
 	
 	@Temporal(TemporalType.DATE)
-	private Calendar data;
+	private Date data;
 	
 	@Lob
 	@Column(length=400000)
@@ -80,18 +83,18 @@ public class Post {
 		this.conteudo = conteudo;
 	}
 
-	public Calendar getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(Calendar data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
 	public byte[] getImagem() {
 		return imagem;
 	}
-
+	
 	public void setImagem(byte[] imagem) {
 		this.imagem = imagem;
 	}

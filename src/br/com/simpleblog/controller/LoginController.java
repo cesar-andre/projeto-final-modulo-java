@@ -33,6 +33,16 @@ public class LoginController {
 		return "";
 	}
 	
+	public String sair() {
+		logado = false;
+
+		FacesMessage msg = new FacesMessage("Sessão encerrada!", "INFO MSG");
+		msg.setSeverity(FacesMessage.SEVERITY_INFO);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+
+		return "/index?faces-redirect=true";
+	}
+	
 	public UsuarioViewModel getUsuarioViewModel() {
 		return usuarioViewModel;
 	}
@@ -41,17 +51,9 @@ public class LoginController {
 		this.usuarioViewModel = usuarioViewModel;
 	}
 
-
-
-
-
 	public Usuario getUsuarioLogado() {
 		return usuarioLogado;
 	}
-
-
-
-
 
 	public void setUsuarioLogado(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;

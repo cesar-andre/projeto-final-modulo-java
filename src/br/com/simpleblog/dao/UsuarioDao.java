@@ -28,4 +28,18 @@ public class UsuarioDao {
 		
 	}
 
+	public Usuario salvar(Usuario usuario) {
+		EntityManager em = this.conexao.getConexao();
+
+		em.getTransaction().begin();
+
+		em.merge(usuario);
+
+		em.getTransaction().commit();
+		em.close();
+
+		return usuario;
+		
+	}
+
 }
