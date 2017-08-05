@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+    			xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+                template="template.xhtml">
+
+<ui:define name="conteudo">
+<h1>Inserir dados do usuario</h1>
+<h:form id="formDetalhesUsuario">			
+		<p:messages id="messagesDetalhes"  showDetail="false" />
+		
+		<h:panelGrid columns="2" cellpadding="5" width="80%" >
+			<p:outputLabel for="nome" value="Nome: " />
+			<p:inputText id="nome" value="#{usuarioController.usuarioForm.nome}" required="true" requiredMessage="Nome é obrigatório"/>
+			<p:outputLabel for="email" value="E-mail: " />
+			<p:inputText id="email" value="#{usuarioController.usuarioForm.email}" required="true" requiredMessage="E-mail é obrigatório"/>
+			<p:outputLabel for="senha" value="Senha: " />
+			<p:password id="senha" value="#{usuarioController.usuarioForm.senha}" required="true" requiredMessage="Senha é obrigatória"/>
+								
+		</h:panelGrid>
+		<p:commandButton id="button"
+						 action="#{usuarioController.salvarUsuario}" value="Salvar"
+						 update="formDetalhesUsuario"
+						 icon="fa fa-save" />
+	</h:form>
+</ui:define>
+
+</ui:composition>

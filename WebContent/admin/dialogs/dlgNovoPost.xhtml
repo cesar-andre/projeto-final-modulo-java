@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form id="formDetalhesPost">
+				
+		<p:messages id="messagesDetalhes"  showDetail="false" />
+		
+		<h:panelGrid columns="2" cellpadding="5" width="100%" >
+			<p:outputLabel for="titulo" value="Titulo: " />
+			
+			<p:inputText id="titulo" value="#{postController.postForm.titulo}" required="true" requiredMessage="Titulo é obrigatório"/>
+			
+			<p:outputLabel for="categoria" value="Categoria: " />
+			<p:selectOneMenu id="categoria" value="#{postController.postForm.categoria}" converter="categoriaConverter" required="true" requiredMessage="Categoria é obrigatória">
+            	<f:selectItems value="#{postController.categorias}" var="cat" itemValue="#{cat}" itemLabel="#{cat.nome}" />
+			</p:selectOneMenu>
+			
+			<p:outputLabel for="conteudo" value="Conteudo: " />
+			<p:inputTextarea id="conteudo" rows="6" cols="33" value="#{postController.postForm.conteudo}" required="true" requiredMessage="Conteudo é obrigatório" />
+			
+			<p:outputLabel for="data" value="Data: " />
+			<p:calendar id="data" value="#{postController.postForm.data}" showOn="button"  />
+			
+			<p:outputLabel for="imagem" value="Imagem: " />
+			<p:fileUpload id="imagem" required="true" requiredMessage="Imagem é obrigatória" fileUploadListener="#{postController.handleFileUpload}" mode="advanced" dragDropSupport="false"
+               	sizeLimit="100000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+					
+		</h:panelGrid>
+		<p:commandButton id="button"
+						 action="#{postController.salvarPost}" value="Salvar"
+						 update="formDetalhesPost"
+						 icon="fa fa-save" />
+	</h:form>
+
+</ui:composition>

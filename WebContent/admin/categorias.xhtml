@@ -9,38 +9,28 @@
 
 <ui:define name="conteudo">
 
-	<h:form id="formListaPosts">
-	<h1>Meus Posts</h1>
+	<h:form id="formListaCategorias">
+	<h1>Categorias</h1>
 	<p:messages />
-	<p:dataTable id="table" var="post" value="#{postController.obterListaAtualizada()}" paginator="true" rows="10">
+	<p:dataTable id="table" var="categoria" value="#{categoriaController.obterListaAtualizada()}" paginator="true" rows="10">
     <p:column headerText="Id">
-        <h:outputText value="#{post.id}" />
+        <h:outputText value="#{categoria.id}" />
     </p:column>
     
-    <p:column headerText="Categoria">
-    	<h:outputText value="#{post.categoria.nome}" />
+    <p:column headerText="Nome">
+    	<h:outputText value="#{categoria.nome}" />
     </p:column>
- 
-    <p:column headerText="Titulo">
-        <h:outputText value="#{post.titulo}" />
-    </p:column>
- 
-    <p:column headerText="Data">
-        <h:outputText value="#{post.data}" >
-        	<f:convertDateTime pattern="dd/MM/yyyy"/>
-        </h:outputText>
-    </p:column>
-    
+     
     <p:column headerText="Alterar">
-    	<p:commandButton id="botaoAlterarPost"
-				 action="#{postController.atualizarPost(post)}"
+    	<p:commandButton id="botaoAlterarCategoria"
+				 action="#{categoriaController.atualizarCategoria(categoria)}"
 		 		 value="Alterar" />
 	</p:column>
 	
 	<p:column headerText="Excluir">
 		
-	<p:commandButton value="Excluir" actionListener="#{postController.removerPost(post)}" update="formListaPosts">
-        <p:confirm header="Confirmação" message="Tem certeza da exclusão do post?" icon="ui-icon-alert" />
+	<p:commandButton value="Excluir" actionListener="#{categoriaController.removerCategoria(categoria)}" update="formListaCategorias">
+        <p:confirm header="Confirmação" message="Tem certeza da exclusão da categoria?" icon="ui-icon-alert" />
     </p:commandButton>
     
     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -54,9 +44,9 @@
 	
 <p:separator />
 
-<p:commandButton id="botaoNovoPost"
-				 action="#{postController.novoPost}"
-		 		 value="Novo Post"
+<p:commandButton id="botaoNovaCategoria"
+				 action="#{categoriaController.novaCategoria}"
+		 		 value="Nova Categoria"
 		 		 icon="fa fa-plus-square" />
 	
 	

@@ -19,30 +19,23 @@
 		
 		<p:menuitem icon="fa fa-home" value=" Home" url="#" />
 		<f:facet name="options">
-			<p:button outcome="login.xhtml" value="Fazer login"  />
+			<p:button outcome="login.xhtml" value="Fazer login" rendered="#{!loginController.logado}" />
+			<p:button outcome="/admin/posts.xhtml" value="Area restrita" rendered="#{loginController.logado}"></p:button>
 		</f:facet>
 	</p:menubar>
 
 	<p:separator />
 
 	<ui:repeat value="#{homeController.postsNaPagina}" var="post">
-		<p:panel id="basic" header="#{post.titulo}" style="margin-bottom:20px">
+		<p:panel id="basic" header="#{post.titulo} - Escrito por: #{post.autor.nome}" style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="10">
-				<p:graphicImage name="img/breve.jpg" width="200px" />
+				<p:graphicImage id="imagemAtiva" value="#{imagemController.imagem}" width="120px" >
+						<f:param name="idPost" value="#{post.id}" />
+				</p:graphicImage>
 				<h:outputText value="#{post.conteudo}" />
 			</h:panelGrid>
-			<p:button value=" + Detalhes" />
 		</p:panel>
 	</ui:repeat>
-
-	<p:separator />
-
-	<p:button value=" Anterior" icon="fa fa-angle-double-left">
-		<f:param name="pinicio" value="0" />
-	</p:button>
-	<p:button value=" Próxima" icon="fa fa-angle-double-right">
-		<f:param name="pfim" value="10" />
-	</p:button>
 
 </h:body>
 
